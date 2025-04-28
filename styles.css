@@ -331,28 +331,54 @@ footer {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: var(--background-color);
+        background-color: rgba(30, 64, 175, 0.98);
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
     }
-
     .nav-links.active {
         display: flex;
     }
-
+    .nav-links a {
+        color: #fff !important;
+        padding: 1rem 0;
+        font-size: 1.2rem;
+        text-align: left;
+        background: none !important;
+        border-radius: 0;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+        display: block;
+    }
+    .login-btn {
+        background: none !important;
+        color: #fff !important;
+        border-radius: 0;
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        font-weight: 700;
+        box-sizing: border-box;
+        padding: 1rem 0;
+    }
+    .login-btn:hover {
+        background: rgba(255,255,255,0.08) !important;
+        color: #fff !important;
+    }
     .hamburger {
         display: flex;
     }
-
+    .home-page .navbar:not(.scrolled) .nav-links a {
+        color: #fff !important;
+    }
     .banner h1 {
         font-size: 2.5rem;
     }
-
     .banner p {
         font-size: 1rem;
     }
-
     .featured-posts h2,
     .cta-section h2 {
         font-size: 2rem;
