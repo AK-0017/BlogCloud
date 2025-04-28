@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - BlogCloud</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-header {
+            padding: 6rem 5% 2rem;
+            background-color: var(--light-background);
+            text-align: center;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 2rem;
+            border: 2px solid var(--border-color);
+            border-radius: 2rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-text);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            background-color: var(--background-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            background-color: var(--background-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>BlogCloud</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="blog-header">
+            <h1>BlogCloud</h1>
+            <div class="blog-title-divider"></div>
+            <p>Discover insightful articles and stories from our community</p>
+            <div class="search-container">
+                <input type="text" class="search-input" id="blogSearchInput" placeholder="Search articles...">
+                <i class="fas fa-search search-icon" id="blogSearchIcon"></i>
+            </div>
+            <div class="filter-container">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Technology</button>
+                <button class="filter-btn">Lifestyle</button>
+                <button class="filter-btn">Marketing</button>
+                <button class="filter-btn">Remote Work</button>
+                <button class="filter-btn">Health</button>
+                <button class="filter-btn">Finance</button>
+            </div>
+        </section>
+
+        <div class="blog-grid" id="blogGrid">
+            <article class="post-card">
+                <span class="category-badge">Technology</span>
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=300&q=80" alt="Post thumbnail">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta-details">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="author-avatar">
+                        <span>By John Doe • 5 min read</span>
+                    </div>
+                    <h3>The Future of Artificial Intelligence</h3>
+                    <p class="post-meta">By John Doe | May 1, 2024</p>
+                    <p>Exploring the latest developments in AI and how they're shaping our future.</p>
+                    <a href="post.html?id=1" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <span class="category-badge">Lifestyle</span>
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?auto=format&fit=crop&w=300&q=80" alt="Post thumbnail">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta-details">
+                        <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Author" class="author-avatar">
+                        <span>By Michael Chen • 3 min read</span>
+                    </div>
+                    <h3>Sustainable Living Tips</h3>
+                    <p class="post-meta">By Michael Chen | May 3, 2024</p>
+                    <p>Practical ways to reduce your environmental footprint and live more sustainably.</p>
+                    <a href="post.html?id=2" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <span class="category-badge">Marketing</span>
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80" alt="Post thumbnail">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta-details">
+                        <img src="https://randomuser.me/api/portraits/women/34.jpg" alt="Author" class="author-avatar">
+                        <span>By Emily Davis • 1 min read</span>
+                    </div>
+                    <h3>Digital Marketing Strategies</h3>
+                    <p class="post-meta">By Emily Davis | May 1, 2024</p>
+                    <p>Effective digital marketing techniques for growing your online presence.</p>
+                    <a href="post.html?id=3" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <span class="category-badge">Remote Work</span>
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80" alt="Post thumbnail">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta-details">
+                        <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="Author" class="author-avatar">
+                        <span>By David Wilson • 2 min read</span>
+                    </div>
+                    <h3>Remote Work Best Practices</h3>
+                    <p class="post-meta">By David Wilson | April 28, 2024</p>
+                    <p>Tips and tools for maintaining productivity while working remotely.</p>
+                    <a href="post.html?id=4" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <span class="category-badge">Health</span>
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=300&q=80" alt="Post thumbnail">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta-details">
+                        <img src="https://randomuser.me/api/portraits/women/36.jpg" alt="Author" class="author-avatar">
+                        <span>By Lisa Brown • 4 min read</span>
+                    </div>
+                    <h3>Healthy Eating Habits</h3>
+                    <p class="post-meta">By Lisa Brown | April 25, 2024</p>
+                    <p>Simple ways to improve your diet and maintain a healthy lifestyle.</p>
+                    <a href="post.html?id=5" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <span class="category-badge">Finance</span>
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=300&q=80" alt="Post thumbnail">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta-details">
+                        <img src="https://randomuser.me/api/portraits/men/37.jpg" alt="Author" class="author-avatar">
+                        <span>By Robert Taylor • 3 min read</span>
+                    </div>
+                    <h3>Financial Planning Basics</h3>
+                    <p class="post-meta">By Robert Taylor | April 22, 2024</p>
+                    <p>Essential financial planning tips for securing your future.</p>
+                    <a href="post.html?id=6" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <span class="category-badge">Health</span>
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80" alt="Post thumbnail">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta-details">
+                        <img src="https://randomuser.me/api/portraits/women/38.jpg" alt="Author" class="author-avatar">
+                        <span>By Lisa Brown • 4 min read</span>
+                    </div>
+                    <h3>Healthy Eating Habits</h3>
+                    <p class="post-meta">By Lisa Brown | April 25, 2024</p>
+                    <p>Simple ways to improve your diet and maintain a healthy lifestyle.</p>
+                    <a href="post.html?id=7" class="read-more">Read More</a>
+                </div>
+            </article>
+        </div>
+
+        <div class="pagination">
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn">Next</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BlogCloud</h3>
+                <p>Your platform for sharing ideas and connecting with like-minded individuals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BlogCloud. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="loading-overlay">
+        <div class="loader">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+        <div id="loading-message"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Blog-specific JavaScript
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('blogSearchInput');
+        const searchIcon = document.getElementById('blogSearchIcon');
+        const blogGrid = document.getElementById('blogGrid');
+        const postCards = document.querySelectorAll('.post-card');
+        const allPosts = Array.from(blogGrid.children);
+
+        function filterPosts() {
+            const query = searchInput.value.trim().toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').textContent.toLowerCase();
+            allPosts.forEach(post => {
+                const title = post.querySelector('h3').textContent.toLowerCase();
+                const category = post.querySelector('.category-badge')?.textContent.toLowerCase() || '';
+                // Check both search and filter
+                const matchesSearch = title.includes(query) || category.includes(query);
+                const matchesFilter = (activeFilter === 'all') || (category === activeFilter);
+                if (matchesSearch && matchesFilter) {
+                    post.style.display = '';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterPosts();
+            });
+        });
+
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                filterPosts();
+            }
+        });
+        searchIcon.addEventListener('click', filterPosts);
+
+        // Pagination functionality
+        const paginationBtns = document.querySelectorAll('.pagination-btn');
+        paginationBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                paginationBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Here you would typically fetch new posts based on the page number
+            });
+        });
+    </script>
+</body>
+</html> 

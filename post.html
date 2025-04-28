@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - BlogCloud</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .post-detail-container {
+            max-width: 800px;
+            margin: 6rem auto 2rem auto;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        .post-detail-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .post-detail-category {
+            display: inline-block;
+            background: #2563eb;
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+        }
+        .post-detail-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .post-detail-meta {
+            color: #6b7280;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .post-detail-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #222;
+        }
+        .post-detail-author {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+        .post-detail-author img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #2563eb;
+        }
+        .back-to-blog {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .back-to-blog:hover {
+            color: #1e40af;
+        }
+        .comments-section {
+            max-width: 800px;
+            margin: 2rem auto 3rem auto;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.06);
+            padding: 2rem;
+        }
+        .comments-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        .single-textarea-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .single-textarea-form textarea {
+            padding: 1.2rem 1.2rem;
+            border: 1px solid #e0e7ef;
+            border-radius: 0.7rem;
+            font-size: 1.15rem;
+            background: #f9fafb;
+            color: #222;
+            resize: vertical;
+            min-height: 120px;
+            transition: border 0.2s;
+        }
+        .single-textarea-form textarea:focus {
+            border: 1.5px solid #a5b4fc;
+            outline: none;
+            background: #fff;
+        }
+        .single-textarea-form button {
+            align-self: flex-start;
+            background: #a5b4fc;
+            color: #222;
+            border: none;
+            padding: 0.8rem 2.2rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.06);
+        }
+        .single-textarea-form button:hover {
+            background: #6366f1;
+            color: #fff;
+        }
+        .modern-comments {
+            list-style: none;
+            padding: 0;
+        }
+        .modern-comments li {
+            background: #f1f5fd;
+            border-radius: 0.8rem;
+            box-shadow: 0 1px 4px rgba(37,99,235,0.04);
+            padding: 1.1rem 1.5rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.08rem;
+            color: #222;
+            position: relative;
+        }
+        .modern-comments li::before {
+            content: "";
+            position: absolute;
+            left: 1.2rem;
+            top: -10px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 12px solid #f1f5fd;
+        }
+        .comment-date {
+            color: #6b7280;
+            font-size: 0.92rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>BlogCloud</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="post-detail-container" id="postDetail">
+            <!-- Blog post will be loaded here -->
+        </div>
+        <section class="comments-section" id="commentsSection">
+            <h3 class="comments-title">Discussion</h3>
+            <form id="commentForm" class="comment-form single-textarea-form">
+                <textarea id="commentText" placeholder="Share your thoughts..." rows="5" required></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+            <ul id="commentsList" class="comments-list modern-comments"></ul>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BlogCloud</h3>
+                <p>Your platform for sharing ideas and connecting with like-minded individuals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BlogCloud. All rights reserved.</p>
+        </div>
+    </footer>
+    <div id="loading-overlay">
+      <div class="loader">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+      <div id="loading-message"></div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+    // Blog post data (should match blog.html IDs)
+    const blogPosts = [
+        {
+            id: 1,
+            title: 'The Future of Artificial Intelligence',
+            image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80',
+            category: 'Technology',
+            author: 'John Doe',
+            authorImg: 'https://randomuser.me/api/portraits/men/32.jpg',
+            date: 'May 1, 2024',
+            readTime: '5 min read',
+            content: `Artificial Intelligence (AI) is rapidly transforming the world as we know it. From self-driving cars to advanced language models, AI is at the forefront of technological innovation. In this article, we explore the latest developments in AI, its potential impact on society, and what the future may hold for this exciting field.
+
+AI is already being used in healthcare, finance, education, and many other industries. As the technology continues to evolve, we can expect even more groundbreaking applications that will change the way we live and work. However, with great power comes great responsibility, and it is crucial to consider the ethical implications of AI as it becomes more integrated into our daily lives.
+
+Stay tuned as we dive deeper into the world of AI and uncover the trends that are shaping our future.`
+        },
+        {
+            id: 2,
+            title: 'Sustainable Living Tips',
+            image: 'https://images.unsplash.com/photo-1504805572947-34fad45aed93?auto=format&fit=crop&w=800&q=80',
+            category: 'Lifestyle',
+            author: 'Michael Chen',
+            authorImg: 'https://randomuser.me/api/portraits/men/33.jpg',
+            date: 'May 3, 2024',
+            readTime: '3 min read',
+            content: `Living sustainably doesn't have to be difficult. In this post, we share practical tips to help you reduce your environmental footprint and live a more eco-friendly lifestyle. From reducing waste to conserving energy, every small step counts towards a healthier planet.
+
+Start by making simple changes, such as using reusable bags, recycling, and choosing energy-efficient appliances. Together, we can make a positive impact on the environment and create a better future for generations to come.`
+        },
+        {
+            id: 3,
+            title: 'Digital Marketing Strategies',
+            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+            category: 'Marketing',
+            author: 'Emily Davis',
+            authorImg: 'https://randomuser.me/api/portraits/women/34.jpg',
+            date: 'May 1, 2024',
+            readTime: '1 min read',
+            content: `Digital marketing is essential for growing your online presence. In this article, we discuss effective strategies for reaching your target audience, increasing engagement, and driving conversions. Learn how to leverage social media, email marketing, and SEO to boost your brand.`
+        },
+        {
+            id: 4,
+            title: 'Remote Work Best Practices',
+            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+            category: 'Remote Work',
+            author: 'David Wilson',
+            authorImg: 'https://randomuser.me/api/portraits/men/35.jpg',
+            date: 'April 28, 2024',
+            readTime: '2 min read',
+            content: `Remote work is here to stay. Discover the best practices for staying productive, maintaining work-life balance, and collaborating effectively with your team from anywhere in the world.`
+        },
+        {
+            id: 5,
+            title: 'Healthy Eating Habits',
+            image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+            category: 'Health',
+            author: 'Lisa Brown',
+            authorImg: 'https://randomuser.me/api/portraits/women/36.jpg',
+            date: 'April 25, 2024',
+            readTime: '4 min read',
+            content: `Eating healthy is key to a happy life. We share simple ways to improve your diet and maintain a healthy lifestyle, including meal planning, mindful eating, and choosing nutritious foods.`
+        },
+        {
+            id: 6,
+            title: 'Financial Planning Basics',
+            image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
+            category: 'Finance',
+            author: 'Robert Taylor',
+            authorImg: 'https://randomuser.me/api/portraits/men/37.jpg',
+            date: 'April 22, 2024',
+            readTime: '3 min read',
+            content: `Financial planning is essential for securing your future. Learn the basics of budgeting, saving, and investing to achieve your financial goals.`
+        },
+        {
+            id: 7,
+            title: 'Healthy Eating Habits',
+            image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+            category: 'Health',
+            author: 'Lisa Brown',
+            authorImg: 'https://randomuser.me/api/portraits/women/38.jpg',
+            date: 'April 25, 2024',
+            readTime: '4 min read',
+            content: `Simple ways to improve your diet and maintain a healthy lifestyle. Tips include eating more fruits and vegetables, staying hydrated, and avoiding processed foods.`
+        }
+    ];
+
+    // Get post ID from URL
+    function getPostId() {
+        const params = new URLSearchParams(window.location.search);
+        return parseInt(params.get('id'), 10);
+    }
+
+    function renderPost() {
+        const postId = getPostId();
+        const post = blogPosts.find(p => p.id === postId);
+        const container = document.getElementById('postDetail');
+        if (!post) {
+            container.innerHTML = '<p>Post not found.</p>';
+            return;
+        }
+        container.innerHTML = `
+            <a href="blog.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+            <img src="${post.image}" alt="${post.title}" class="post-detail-image">
+            <span class="post-detail-category">${post.category}</span>
+            <h2 class="post-detail-title">${post.title}</h2>
+            <div class="post-detail-author">
+                <img src="${post.authorImg}" alt="${post.author}">
+                <span>${post.author}</span>
+            </div>
+            <div class="post-detail-meta">${post.date} • ${post.readTime}</div>
+            <div class="post-detail-content">${post.content.replace(/\n/g, '<br>')}</div>
+        `;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        renderPost();
+        // Comment section logic
+        const commentForm = document.getElementById('commentForm');
+        const commentsList = document.getElementById('commentsList');
+        let comments = [];
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = document.getElementById('commentText').value.trim();
+            if (!text) return;
+            const date = new Date().toLocaleString();
+            const comment = { text, date };
+            comments.unshift(comment);
+            renderComments();
+            commentForm.reset();
+        });
+        function renderComments() {
+            commentsList.innerHTML = comments.map(c => `
+                <li>
+                    <div class="comment-text">${c.text.replace(/\n/g, '<br>')}</div>
+                    <span class="comment-date">${c.date}</span>
+                </li>
+            `).join('');
+        }
+    });
+    </script>
+</body>
+</html> 
