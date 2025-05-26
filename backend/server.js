@@ -59,6 +59,27 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
+// Route to get all users (excluding passwords)
+app.get('/api/users', (req, res) => {
+  try {
+    const getAllUsersSql = `SELECT id, name, email, created_at FROM users ORDER BY created_at DESC`;
+    
+    db.all(getAllUsersSql, [], (err, rows) => {
+      if (err) {
+        console.error('Database error when fetching users:', err.message);
+        return res.status(500).json({ message: 'Server error while retrieving users.' });
+      }
+      if (!rows) {
+        return res.status(404).json({ message: 'No users found.' });
+      }
+      res.json({ users: rows });
+    });
+  } catch (error) {
+    console.error('Server error:', error);
+    res.status(500).json({ message: 'Server error during user retrieval.' });
+  }
+});
+
 // Login route
 app.post('/api/login', (req, res) => {
   try {
